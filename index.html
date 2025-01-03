@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Silicon Valley Recruits</title>
+  <!-- Font Awesome for Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2DhNHfYaVXHC4zY0I7yj3Y4f034I8UrxPkj43zC957Z5i7dPEFOHr1znhf6/Z3u1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* HEADER / NAVIGATION */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0077B5; /* A nice shade of blue */
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      margin: 0 0.75rem;
+      padding: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #0077B5;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 0 1rem;
+      margin-top: 70px; /* for fixed header offset */
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #0077B5;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background: #005f90;
+    }
+
+    /* SECTION STYLES */
+    section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #0077B5;
+    }
+
+    /* ABOUT SECTION */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-text {
+      text-align: justify;
+    }
+
+    .about-img img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* SERVICES SECTION */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: #f9f9f9;
+      border-radius: 6px;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card h3 {
+      margin-bottom: 0.75rem;
+      color: #333;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      text-align: justify;
+    }
+
+    /* CONTACT SECTION */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-form {
+      background: #f9f9f9;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .contact-form h3 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .contact-form button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #0077B5;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background: #005f90;
+    }
+
+    .contact-info h4 {
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    .contact-info a {
+      color: #0077B5;
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0077B5;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-menus {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="nav-container">
+      <div class="nav-logo">
+        Silicon Valley Recruits
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <!-- The background image should cover the entire hero section -->
+      <style>
+        .hero {
+          background: url('img/hiring.jpg') center center/cover no-repeat;
+        }
+      </style>
+      <h1>Trusted &amp; Professional Hiring Geeks</h1>
+      <p><strong>Connecting top talent with the right opportunities.</strong></p>
+      <a href="#services" class="hero-btn">Explore Our Services</a>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          At <strong>Silicon Valley Recruits</strong>, our core mission is 
+          <em>“connecting top talent with the right opportunities.”</em> We focus on 
+          leveraging our extensive professional network instead of relying solely on 
+          standard search platforms. Over the years, we have cultivated strong connections 
+          with professionals across various industries and locations.
+        </p>
+        <p>
+          Our emphasis is on providing high-quality recruitment rather than high-volume placement, 
+          assisting businesses seeking specialized, dedicated talent. Our systematic approach 
+          ensures each placement aligns with both the client’s requirements and the candidate’s 
+          career aspirations.
+        </p>
+      </div>
+      <div class="about-img">
+        <img 
+          src="img/recruitment.jpg"
+          alt="Team Discussion"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <!-- Permanent Staffing -->
+      <div class="service-card">
+        <img 
+          src="img/staffing.jpg" 
+          alt="Permanent Staffing"
+        />
+        <h3>Permanent Staffing</h3>
+        <p>
+          <strong>Silicon Valley Recruits</strong> offers permanent staffing solutions with 
+          fully screened and qualified candidates across any industry. Our dedicated team 
+          of recruiters strives to help your company meet its business objectives. Our 
+          process guarantees we source the best candidates at any level with the quickest 
+          turnaround time.
+        </p>
+      </div>
+      <!-- Contract Staffing -->
+      <div class="service-card">
+        <img 
+          src="img/contract-staffing.jpg"
+          alt="Contract Staffing"
+        />
+        <h3>Contract Staffing</h3>
+        <p>
+          Our employee leasing service transfers your employees onto the payroll of 
+          <strong>Silicon Valley Recruits</strong>, then leases them back to you on a 
+          temporary basis. This makes us the legal employer, taking over all HR administrative 
+          and management responsibilities.
+        </p>
+        <p>
+          By outsourcing HR administration to us, you can focus on your core business 
+          while saving money, time, and resources. We can provide the right people for any 
+          duration or role.
+        </p>
+      </div>
+      <!-- Recruitment Process Outsourcing -->
+      <div class="service-card">
+        <img 
+          src="img/outsourcing.jpg"
+          alt="Recruitment Process Outsourcing"
+        />
+        <h3>Recruitment Process Outsourcing</h3>
+        <p>
+          We assume complete ownership of your staffing requirements, ensuring resources 
+          are onboarded according to agreed timelines. With a dedicated team focusing on your 
+          assignment, we deliver timely, cost-effective solutions while maintaining a 
+          high-quality candidate pool.
+        </p>
+        <p>
+          Our scope includes everything from analyzing business needs to onboarding, effectively 
+          planning resources, and adjusting recruiter strength to match varying business demands.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <h3>Request a Call Back</h3>
+        <!-- Form sends details to WhatsApp on submit -->
+        <form onsubmit="sendWhatsAppMessage(); return false;">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your Name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your Email" required />
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Your Phone Number" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h4>Get in Touch</h4>
+        <p>
+          <strong>Registered Address:</strong><br />
+          No. 3, L.B. Shastri Nagar Main Road, Brindavan Layout,<br/>
+          Bangalore North, Bangalore, Karnataka - 560017
+        </p>
+        <p>
+          <strong>Email:</strong><br />
+          <a href="mailto:admin@siliconrecruits.com">admin@siliconrecruits.com</a>
+        </p>
+        <p>
+          <strong>Phone:</strong><br />
+          <a href="tel:+918618243381">+91 8618243381</a>
+        </p>
+        <!--
+        <p>
+          <strong>Follow Us:</strong><br />
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </p>-->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <i class="fas fa-phone-alt"></i> Call Us: 
+      <a href="tel:+918618243381">+91 8618243381</a>
+    </p>
+    <div class="footer-menus">
+      <a href="#home">Home</a> | 
+      <a href="#about">About Us</a> | 
+      <a href="#services">Services</a> | 
+      <a href="#contact">Contact</a>
+    </div>
+    <p>© 2025 All Rights Reserved. Silicon Valley Recruits</p>
+  </footer>
+
+  <!-- Script to send details via WhatsApp -->
+  <script>
+    function sendWhatsAppMessage() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+
+      const whatsappText = 
+        'Name: ' + name + '%0A' +
+        'Email: ' + email + '%0A' +
+        'Phone: ' + phone + '%0A' +
+        'Message: ' + message;
+
+      // Replace the phone number with the correct contact or keep as is
+      const whatsappURL = 'https://api.whatsapp.com/send?phone=918618243381&text=' + whatsappText;
+
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+</body>
+</html>
